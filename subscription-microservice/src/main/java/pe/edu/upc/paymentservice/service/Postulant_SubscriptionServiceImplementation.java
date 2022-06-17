@@ -28,8 +28,8 @@ public class Postulant_SubscriptionServiceImplementation implements Postulant_Su
     }
 
     @Override
-    public List<Postulant_Subscription> getPostulant_Subscription(Postulant postulant) {
-        List<Postulant_Subscription> postulant_subscriptions = postulant_subscriptionRepository.findByAllPostulant(postulant);
+    public List<Postulant_Subscription> getPostulant_Subscription(Long id) {
+        List<Postulant_Subscription> postulant_subscriptions = postulant_subscriptionRepository.findByAllPostulant(id);
         postulant_subscriptions.forEach(postulant_subscription ->  {
             postulant_subscription.setPostulant(postulantClient.getPostulant(postulant_subscription.getPostulantId()).getBody());
         });
@@ -78,9 +78,10 @@ public class Postulant_SubscriptionServiceImplementation implements Postulant_Su
     }
 
     @Override
-    public Postulant_Subscription findPostulant_LastSubscription(Postulant postulant) {
-        Postulant_Subscription postulant_subscription = postulant_subscriptionRepository.findLastSubscriptionPostulant(postulant);
+    public Postulant_Subscription findPostulant_LastSubscription(Long id) {
+        Postulant_Subscription postulant_subscription = postulant_subscriptionRepository.findLastSubscriptionPostulant(id);
         if(postulant_subscription == null) return null;
+        postulant_subscription.setPostulant(postulantClient.getPostulant(postulant_subscription.getPostulantId()).getBody());
         return  postulant_subscription;
     }
 }

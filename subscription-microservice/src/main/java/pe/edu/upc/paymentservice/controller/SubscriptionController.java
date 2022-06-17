@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.paymentservice.entity.*;
+import pe.edu.upc.paymentservice.model.Postulant;
 import pe.edu.upc.paymentservice.service.*;
 
 import java.util.List;
@@ -59,11 +60,29 @@ public class SubscriptionController {
     }
 
     @GetMapping(value = "/{id}/postulant")
-    public ResponseEntity<List<Postulant_Subscription>> getAllSubscriptionByIdPostulant(@PathVariable("id") Long id) {
+    public ResponseEntity<List<Postulant_Subscription>> getAllSpecificSubscription(@PathVariable("id") Long id) {
         Subscription subscription = subscriptionService.getSubscription(id);
         if(subscription == null) return ResponseEntity.noContent().build();
 
         List<Postulant_Subscription> postulantSubscriptionList = postulantSubscriptionService.findBySubscription(subscription);
+        if(postulantSubscriptionList == null) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(postulantSubscriptionList);
+    }
+    @GetMapping(value = "/postulant/{id}")
+    public ResponseEntity<List<Postulant_Subscription>> getAllSubscriptionByIdPostulant(@PathVariable("id") Long id) {
+        Subscription subscription = subscriptionService.getSubscription(id);
+        if(subscription == null) return ResponseEntity.noContent().build();
+
+        List<Postulant_Subscription> postulantSubscriptionList = postulantSubscriptionService.getPostulant_Subscription(id);
+        if(postulantSubscriptionList == null) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(postulantSubscriptionList);
+    }
+    @GetMapping(value ="/postulant/{id}/last")
+    public ResponseEntity<Postulant_Subscription> getLastSubscriptionByIdPostulant(@PathVariable("id") Long id) {
+        Subscription subscription = subscriptionService.getSubscription(id);
+        if(subscription == null) return ResponseEntity.noContent().build();
+
+        Postulant_Subscription postulantSubscriptionList = postulantSubscriptionService.findPostulant_LastSubscription(id);
         if(postulantSubscriptionList == null) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(postulantSubscriptionList);
     }
