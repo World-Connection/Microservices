@@ -40,8 +40,8 @@ public class InvoiceServiceImplementation implements InvoiceService{
         Invoice getInvoice = invoiceRepository.findById(invoice.getId()).orElse(null);
         if (getInvoice == null)
             return null;
-        getInvoice.setSubscription(subscriptionClient.getSubscription(invoice.getSubscriptionId()).getBody());
-        getInvoice.setPostulant(postulantClient.getPostulant(invoice.getPostulantId()).getBody());
+        getInvoice.setSubscription(subscriptionClient.getSubscription(getInvoice.getSubscriptionId()).getBody());
+        getInvoice.setPostulant(postulantClient.getPostulant(getInvoice.getPostulantId()).getBody());
         return getInvoice;
     }
 
