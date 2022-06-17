@@ -1,6 +1,5 @@
 package pe.edu.upc.postulation.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,10 +7,7 @@ import pe.edu.upc.postulation.model.JobOffer;
 import pe.edu.upc.postulation.model.Postulant;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 @Data

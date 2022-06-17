@@ -66,8 +66,8 @@ public class PostulationServiceImpl implements PostulationService {
     }
 
     @Override
-    public List<Postulation> getPostulationsByPostulant(Postulant postulant){
-        List<Postulation> postulations = postulationRepository.findByPostulant(postulant);
+    public List<Postulation> getPostulationsByPostulant(Long id){
+        List<Postulation> postulations = postulationRepository.findByPostulant(id);
 
         postulations.forEach(postulation -> {
             postulation.setPostulant(postulantClient.getPostulant(postulation.getPostulantId()).getBody());
@@ -78,8 +78,8 @@ public class PostulationServiceImpl implements PostulationService {
     }
 
     @Override
-    public List<Postulation> getPostulationsByJobOffer(JobOffer jobOffer) {
-        List<Postulation> postulations = postulationRepository.findByJobOffer(jobOffer);
+    public List<Postulation> getPostulationsByJobOffer(Long id) {
+        List<Postulation> postulations = postulationRepository.findByJobOffer(id);
 
         postulations.forEach(postulation -> {
             postulation.setPostulant(postulantClient.getPostulant(postulation.getPostulantId()).getBody());

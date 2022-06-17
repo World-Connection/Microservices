@@ -2,8 +2,6 @@ package pe.edu.upc.postulation.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import pe.edu.upc.postulation.entity.Postulation;
-import pe.edu.upc.postulation.model.JobOffer;
-import pe.edu.upc.postulation.model.Postulant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,22 +9,22 @@ import java.util.List;
 public interface PostulationRepository extends JpaRepository<Postulation,Long> {
     public Postulation findByNumberPostulation(String numberPostulation);
 
-    public default List<Postulation> findByPostulant(Postulant postulant){
+    public default List<Postulation> findByPostulant(Long id){
         List<Postulation> postulationList = this.findAll();
         List<Postulation> oneSpecificPostulant = new ArrayList<>();
         for(Postulation es : postulationList) {
-            if(es.getPostulantId().equals(postulant)) {
+            if(es.getPostulantId().equals(id)) {
                 oneSpecificPostulant.add(es);
             }
         }
         return oneSpecificPostulant;
     };
 
-    public default List<Postulation> findByJobOffer(JobOffer jobOffer){
+    public default List<Postulation> findByJobOffer(Long id){
         List<Postulation> postulationList = this.findAll();
         List<Postulation> oneSpecificJobOffer = new ArrayList<>();
         for(Postulation es : postulationList) {
-            if(es.getJobOfferId().equals(jobOffer)) {
+            if(es.getJobOfferId().equals(id)) {
                 oneSpecificJobOffer.add(es);
             }
         }

@@ -60,11 +60,22 @@ public class PostulationController {
         postulationService.deletePostulation(id);
     }
 
-    /*@GetMapping(value = "/postulant/{id}")
+    @GetMapping(value = "/postulant/{id}")
     public ResponseEntity<List<Postulation>> getAllPostulationsByPostulant(@PathVariable("id") long id) {
-        Postulant postulant = postulationService.ge
-        List<Postulation> postulationList = postulationService.getPostulationsByPostulant()
 
-    }*/
+        List<Postulation> postulationList = postulationService.getPostulationsByPostulant(id);
+        if(postulationList == null) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(postulationList);
+
+    }
+
+    @GetMapping(value = "/joboffer/{id}")
+    public ResponseEntity<List<Postulation>> getAllPostulationsByJobOffer(@PathVariable("id") long id) {
+
+        List<Postulation> postulationList = postulationService.getPostulationsByJobOffer(id);
+        if(postulationList == null) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(postulationList);
+
+    }
 
 }
