@@ -51,8 +51,6 @@ public class InvoiceController {
     }
     @DeleteMapping(value = "/{id}")
     public void deleteInvoice(@PathVariable Long id) {
-        Invoice invoice = invoiceService.getInvoiceById(Invoice.builder().id(id).build());
-        if(invoice == null) return;
-        invoiceService.deleteInvoice(invoice);
+        invoiceService.deleteInvoice(Invoice.builder().id(id).build());
     }
 }

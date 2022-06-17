@@ -28,18 +28,18 @@ public interface Postulant_SubscriptionRepository extends JpaRepository<Postulan
         }
         return oneSpecificSubscription;
     }
-    public default List<Postulant_Subscription> findByAllPostulant(Postulant postulant) {
+    public default List<Postulant_Subscription> findByAllPostulant(Long id) {
         List<Postulant_Subscription> postulant_subscriptionList = this.findAll();
         List<Postulant_Subscription> oneSpecificPostulant = new ArrayList<>();
         for(Postulant_Subscription postulantListing : postulant_subscriptionList) {
-            if(postulantListing.getPostulant().getId().equals(postulant.getId())) {
+            if(postulantListing.getPostulantId().equals(id)) {
                 oneSpecificPostulant.add(postulantListing);
             }
         }
         return oneSpecificPostulant;
     }
-    public default Postulant_Subscription findLastSubscriptionPostulant(Postulant postulant) {
-        List<Postulant_Subscription> oneSpecificPostulant = this.findByAllPostulant(postulant);
+    public default Postulant_Subscription findLastSubscriptionPostulant(Long id) {
+        List<Postulant_Subscription> oneSpecificPostulant = this.findByAllPostulant(id);
 
         return oneSpecificPostulant.get(oneSpecificPostulant.size()-1);
     }
