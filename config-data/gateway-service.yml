@@ -3,32 +3,32 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8099/eureka/
+      defaultZone: http://ec2-3-88-112-181.compute-1.amazonaws.com:8099/eureka/
 spring:
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
-        routes:
-          - id: user-service
-            uri: lb://user-service
-            predicates:
-              - Path=/users/**
-          - id: joboffer-service
-            uri: lb://joboffer-service
-            predicates:
-              - Path=/joboffers/**
-          - id: subscription-service
-            uri: lb://subscription-service
-            predicates:
-              - Path=/subscriptions/**
-          - id: postulation-service
-            uri: lb://postulation-service
-            predicates:
-              - Path=/postulations/**
-          - id: payment-service
-            uri: lb://payment-service
-            predicates:
-              - Path=/payments/**
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/postulant/**
+        - id: postulation-service
+          uri: lb://postulation-service
+          predicates:
+            - Path=/postulation/**
+        - id: subscription-service
+          uri: lb://subscription-service
+          predicates:
+            - Path=/subscription/**
+        - id: joboffer-service
+          uri: lb://joboffer-service
+          predicates:
+            - Path=/joboffer/**
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/invoice/**,/payment/**
 
