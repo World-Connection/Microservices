@@ -1,6 +1,10 @@
 FROM ubuntu:latest
-MAINTAINER EUGENIO eucm2g@gmail.com
-RUN apt-get update
-RUN apt-get -y install apache2
-expose 80
-CMD /usr/sbin/apache2ctl -D FOREGROUND
+
+RUN apt-get -y update; \
+    apt-get -y upgrade; \
+    apt-get -y install apt-utils \
+    vim \
+    htop;
+RUN apt-get -y install dstat
+
+CMD ["bash"]
