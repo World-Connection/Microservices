@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'pe.edu.upc.suscription-service' is invalid and this project uses 'pe.edu.upc.paymentservice' instead.
+* The original package name 'pe.edu.upc.suscription-service' is invalid and this project uses 'pe.edu.upc.subscriptionservice' instead.
 
 # Getting Started
 

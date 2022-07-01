@@ -8,8 +8,8 @@ import pe.edu.upc.postulation.model.Postulant;
 
 
 
-@FeignClient(name = "user-service", path = "/postulant")
+@FeignClient(name = "user-service", fallback = PostulantHystrixFallbackFactory.class)
 public interface PostulantClient {
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/postulant/{id}")
     public ResponseEntity<Postulant> getPostulant(@PathVariable("id")Long id);
 }

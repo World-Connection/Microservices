@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.paymentservice.client.PostulantClient;
 import pe.edu.upc.paymentservice.client.SubscriptionClient;
 import pe.edu.upc.paymentservice.entity.Invoice;
-import pe.edu.upc.paymentservice.entity.Payment;
 import pe.edu.upc.paymentservice.model.Postulant;
 import pe.edu.upc.paymentservice.repository.InvoiceRepository;
 
